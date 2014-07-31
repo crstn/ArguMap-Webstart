@@ -1,0 +1,49 @@
+<!-- 
+This build.xml builds up a library out of the current sources and sets the log4j.properties
+This file is written and tested by CK
+
+
+-->
+
+<project name="webStartJar" default="launch" basedir="E:/Carsten/development/eclipse/workspace/ArguMap WebStart">
+	<description >
+	This build task needs one property: 
+	- argumapdest to set the destinationfile for the generated jar 
+	</description>
+	<!-- sets the build directory -->
+	<target name="init">
+		<mkdir dir="build"/>
+	</target>
+	<!-- compiles the sources to the build directory -->
+	<target name="compile">
+		<javac srcdir="${basedir}/src" destdir="${basedir}/build" fork="no" debug="true">
+			<!--<classpath >
+				<fileset dir="${basedir}/lib"></fileset>
+			</classpath>-->
+		</javac>
+	</target>
+	<!-- jars the stuff -->
+	<target name="jaring">
+		<!-- Copy the icons to the build dir: --> 
+		<copy todir="${basedir}/build/de/argumap/UI/img">
+			<fileset dir="${basedir}/src/de/argumap/UI/img"></fileset>
+		</copy>
+		<copy todir="${basedir}/build/de/argumap/UI/treetable/icons">
+			<fileset dir="${basedir}/src/de/argumap/UI/treetable/icons"></fileset>
+		</copy>
+		<copy todir="${basedir}/build/de/argumap/gt_extensions/img">
+			<fileset dir="${basedir}/src/de/argumap/gt_extensions/img"></fileset>
+		</copy>
+		<!-- copy JimiCore.jar to the target dir -->
+		<copy file="${basedir}/JimiCore.jar" tofile="X:/medis/www/htdocs/argumap_ws/JimiCore.jar"/>
+		<!-- copy the jnlp file to the target dir -->
+		<copy file="${basedir}/webstart.jnlp" tofile="X:/medis/www/htdocs/argumap_ws/webstart.jnlp"/>
+		<jar basedir="${basedir}/build" destfile="X:/medis/www/htdocs/argumap_ws/argumap.jar"></jar>
+	</target>
+	<!-- deletes the build dir -->
+	<target name="clear">
+		<delete dir="${basedir}/build"></delete>
+	</target>
+	<!-- run it all... -->	
+	<target name="launch" depends="init,compile,jaring,clear"></target>
+</project>

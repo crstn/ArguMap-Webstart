@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" codebase="http://medis.uni-muenster.de/argumap_ws/" href="webstart.jnlp">
+	<information>
+		<title>ArguMap Prototype Webstart Mod</title>
+		<vendor>Carsten Kessler</vendor>
+		<offline-allowed/>
+	</information>
+	<resources>
+		<jar href="argumap.jar" />
+		<jar href="JimiCore.jar" />
+		<j2se version="1.5" href="http://java.sun.com/products/autodl/j2se" />
+	</resources>
+	<application-desc main-class="de.argumap.UI.ArguMapLauncher">
+	<!-- make sure you keep these arguments in the right order!! -->
+		<!-- 1. URL of you shapefile (without file extension), e.g. http://www.yourhost.com/shapes/myshape -->
+		<argument>http://medis.uni-muenster.de/argumap/src/corsica/CO_Municip_Project</argument>
+		<!-- 2. Name of the shape you want to use -->
+		<argument>"Municipalities Corsica"</argument>
+		<!-- 3. Name of the colum in the .dbf-file that you want to use for the shading of the map  -->
+		<argument>POPU</argument>
+		<!-- 4. Name of the colum in the .dbf-file that you want to use for the tooltips on the map  -->
+		<argument>NAME</argument>
+		<!-- 5. URL of your apache tomcat dir containing the serlets, e.g. http://www.yourhost.com:8080/wmc/ -->
+		<argument>http://medis.uni-muenster.de:7000/wmc/</argument>
+	<application-desc/>	
+</jnlp>
